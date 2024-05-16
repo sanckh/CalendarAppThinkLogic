@@ -1,0 +1,5 @@
+<div>
+  <input type="date" [(ngModel)]="selectedDate" (change)="onDateChange($event)">
+</div>
+<app-event-list [events]="events"></app-event-list>
+<app-event-form (eventAdded)="loadEvents(selectedDate)"></app-event-form>

@@ -1,0 +1,10 @@
+<div *ngIf="events.length === 0">No events for the selected date.</div>
+<ul>
+  <li *ngFor="let event of events">
+    <strong>{{ event.title }}</strong> ({{ event.startDate | date: 'shortDate' }} - {{ event.endDate | date: 'shortDate' }})
+    <br>
+    Location: {{ event.location }}
+    <br>
+    Description: {{ event.description }}
+  </li>
+</ul>
