@@ -1,5 +1,6 @@
-<div>
+<div class="container">
+  <h1>Event Calendar</h1>
   <full-calendar [options]="calendarOptions"></full-calendar>
+  <app-event-list [events]="events"></app-event-list>
+  <app-event-form (eventAdded)="loadEvents(selectedDate)"></app-event-form>
 </div>
-<app-event-list [events]="events"></app-event-list>
-<app-event-form (eventAdded)="loadEvents(selectedDate)"></app-event-form>
