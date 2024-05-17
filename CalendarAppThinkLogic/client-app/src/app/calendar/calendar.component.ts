@@ -1,15 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { EventService } from '../../app/event.service';
 import { Event } from '../../app/models/event.model';
+import { CalendarOptions } from '@fullcalendar/core';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin from '@fullcalendar/interaction';
 
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
-  styleUrls: ['./calendar.component.css']
 })
 export class CalendarComponent implements OnInit {
   events: Event[] = [];
   selectedDate: Date = new Date();
+
+  calendarOptions: CalendarOptions = {
+    initialView: 'dayGridMonth',
+    plugins: [dayGridPlugin, interactionPlugin],
+    dateClick: this.handleDateClick.bind(this),
+    events: []
+  };
 
   constructor(private eventService: EventService) { }
 
@@ -21,12 +30,20 @@ export class CalendarComponent implements OnInit {
     const dateString = date.toISOString().split('T')[0];
     this.eventService.getEvents(dateString).subscribe(events => {
       this.events = events;
+      this.calendarOptions.events = events.map(event => ({
+        title: event.title,
+        start: event.startDate,
+        end: event.endDate,
+        extendedProps: {
+          location: event.location,
+          description: event.description
+        }
+      }));
     });
   }
 
-  onDateChange(event: any): void {
-    const input = event.target as HTMLInputElement;
-    this.selectedDate = input.valueAsDate || new Date(); // default to today's date if null
+  handleDateClick(arg: any) {
+    this.selectedDate = new Date(arg.date);
     this.loadEvents(this.selectedDate);
   }
 }

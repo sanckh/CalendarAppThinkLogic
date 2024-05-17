@@ -8,6 +8,9 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { EventListComponent } from './event-list/event-list.component';
 import { EventFormComponent } from './event-form/event-form.component';
 import { EventService } from './event.service';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin from '@fullcalendar/interaction';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,8 @@ import { EventService } from './event.service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    FullCalendarModule
   ],
   providers: [EventService],
   bootstrap: [AppComponent]
