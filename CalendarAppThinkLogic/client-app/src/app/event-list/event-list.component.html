@@ -6,6 +6,7 @@
       <span>{{ event.startDate | date: 'shortDate' }} - {{ event.endDate | date: 'shortDate' }}</span>
       <span>Location: {{ event.location }}</span>
       <span>Description: {{ event.description }}</span>
+      <button (click)="editEvent(event)">Edit</button>
     </li>
   </ul>
 </div>

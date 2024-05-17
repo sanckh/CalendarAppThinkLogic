@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Event } from '../../app/models/event.model';
 
 @Component({
@@ -7,4 +7,9 @@ import { Event } from '../../app/models/event.model';
 })
 export class EventListComponent {
   @Input() events: Event[] = [];
+  @Output() eventEdited = new EventEmitter<Event>();
+
+  editEvent(event: Event): void {
+    this.eventEdited.emit(event);
+  }
 }

@@ -12,6 +12,7 @@ import interactionPlugin from '@fullcalendar/interaction';
 export class CalendarComponent implements OnInit {
   events: Event[] = [];
   selectedDate: Date = new Date();
+  selectedEvent: Event | null = null;
 
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
@@ -45,5 +46,9 @@ export class CalendarComponent implements OnInit {
   handleDateClick(arg: any) {
     this.selectedDate = new Date(arg.date);
     this.loadEvents(this.selectedDate);
+  }
+
+  handleEventEdited(event: Event): void {
+    this.selectedEvent = event;
   }
 }

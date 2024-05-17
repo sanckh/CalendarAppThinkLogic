@@ -1,6 +1,6 @@
 <div class="container">
   <h1>Event Calendar</h1>
   <full-calendar [options]="calendarOptions"></full-calendar>
-  <app-event-list [events]="events"></app-event-list>
-  <app-event-form (eventAdded)="loadEvents(selectedDate)"></app-event-form>
+  <app-event-list [events]="events" (eventEdited)="handleEventEdited($event)"></app-event-list>
+  <app-event-form *ngIf="selectedEvent" [event]="selectedEvent" (eventAdded)="loadEvents(selectedDate)"></app-event-form>
 </div>
